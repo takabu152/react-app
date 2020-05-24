@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react'
 
-const Booklist = props => {
+const Wheatherlist = props => {
 
-    const [bookData, setBookData] = useState(null)
+    const [weatherData, setWeatherData] = useState(null)
 
-    useEffect(() => { const result = props.getData?.(props.language).then(response => setBookData(response)) }, [props])
-    console.log(bookData)
+    useEffect(() => { const result = props.getData?.(props.weatherPlaceID).then(response => setWeatherData(response)) }, [props])
+    console.log(weatherData)
 
     return (
+        <>
         <div>
             <ul>
                 {
-                    bookData === null
+                    weatherData === null
                     ? <p>now loading...</p>
-                    : bookData.data.items.map(x => 
+                    : weatherData.data.items.map(x => 
                         <>
                         <li>{x.volumeInfo.title}</li>
                         <li> <img src={x.volumeInfo.imageLinks.smallThumbnail} alt=""/> </li>
@@ -22,7 +23,8 @@ const Booklist = props => {
                 }
             </ul>
         </div>
+        </>
     )
 }
 
-export default Booklist
+export default Wheatherlist
